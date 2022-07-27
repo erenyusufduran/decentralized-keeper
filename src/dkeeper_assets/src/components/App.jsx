@@ -3,18 +3,20 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
+import { dkeeper } from "../../../declarations/dkeeper";
 
 function App() {
   const [notes, setNotes] = useState([]);
 
   function addNote(newNote) {
-    setNotes(prevNotes => {
+    setNotes((prevNotes) => {
+      dkeeper.createNote(newNote.title, newNote.content);
       return [...prevNotes, newNote];
     });
   }
 
   function deleteNote(id) {
-    setNotes(prevNotes => {
+    setNotes((prevNotes) => {
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
