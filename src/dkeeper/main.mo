@@ -1,5 +1,5 @@
-import List "mo:base/List";
 import Debug "mo:base/Debug";
+import List "mo:base/List";
 
 actor DKeeper {
   type Note = {
@@ -17,6 +17,9 @@ actor DKeeper {
 
     notes := List.push(newNote, notes);
     Debug.print(debug_show(notes));
-  }
+  };
 
+  public query func readNotes(): async [Note] {
+    return List.toArray(notes);
+  };
 };
